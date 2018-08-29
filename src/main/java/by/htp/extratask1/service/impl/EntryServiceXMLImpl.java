@@ -29,11 +29,11 @@ import by.htp.extratask1.service.EntryService;
 import by.htp.extratask1.service.ServiceException;
 
 public class EntryServiceXMLImpl implements EntryService{
-	private final String FILE_PATH = "e:\\entries.xml";
+	private final String ENTRIES_STORE_PATH = "e:\\entries.xml";
 	
 	@Override
 	public <E> void createEntry(Criteria<E> inputEntry) throws ServiceException{
-		File file = new File(FILE_PATH);
+		File entriesStoreFile = new File(ENTRIES_STORE_PATH);
 		//get factory and repository
 		DAOFactory factory = DAOFactory.getInstance();
 		XMLRepositoryDAO repository = (XMLRepositoryDAO)factory.getRepositoryDAO();
@@ -44,9 +44,9 @@ public class EntryServiceXMLImpl implements EntryService{
 		try {
 			//parse XML, read data from file, create classes structure
 			context = JAXBContext.newInstance(XMLRepositoryDAO.class);
-			if(file.exists()) {
+			if(entriesStoreFile.exists()) {
 				Unmarshaller unmarshaller = context.createUnmarshaller();
-				repository = (XMLRepositoryDAO)unmarshaller.unmarshal(file);
+				repository = (XMLRepositoryDAO)unmarshaller.unmarshal(entriesStoreFile);
 			}
 			
 			marshaller = context.createMarshaller();
@@ -76,7 +76,7 @@ public class EntryServiceXMLImpl implements EntryService{
 			//add info to subCategory
 			subCategoryDAO.addEntry(entryDAO);
 			//write data to file (serialization)
-			marshaller.marshal(repository, new FileOutputStream(FILE_PATH));
+			marshaller.marshal(repository, new FileOutputStream(ENTRIES_STORE_PATH));
 			marshaller.marshal(repository, System.out);
 			System.out.println();
 			System.out.println("XML file was been created");
@@ -90,7 +90,7 @@ public class EntryServiceXMLImpl implements EntryService{
 	@Override
 	public <E> List<Criteria<E>> searchEntry(Criteria<E> EntryForSearch) throws ServiceException {
 		List<Criteria<E>> entriesForPage;
-		File file = new File(FILE_PATH);
+		File file = new File(ENTRIES_STORE_PATH);
 		entriesForPage = new ArrayList<>();
 		//get factory and repository
 		DAOFactory factory = DAOFactory.getInstance();
