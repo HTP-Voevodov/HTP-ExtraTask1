@@ -1,6 +1,6 @@
-package by.htp.extratask1.bean;
+package by.htp.extratask1.domain;
 
-public class News {
+public class NewsForDisplay {
 	private String category;
 	private String subCategory;
 	private String newsName;
@@ -8,7 +8,7 @@ public class News {
 	private String dateOfIssue;
 	private String newsBody;
 	
-	public News() {}
+	public NewsForDisplay() {}
 	
 	public String getCategory() {
 		return category;
@@ -68,7 +68,7 @@ public class News {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		News other = (News) obj;
+		NewsForDisplay other = (NewsForDisplay) obj;
 		if (category == null) {
 			if (other.category != null)
 				return false;
@@ -101,5 +101,13 @@ public class News {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "category = " + category + ", subCategory = " + subCategory + ", newsName = " + newsName + ", provider = "
+				+ provider + ", dateOfIssue = " + dateOfIssue + ", newsBody = " + newsBody;
+	}
+	
+	
 
 }

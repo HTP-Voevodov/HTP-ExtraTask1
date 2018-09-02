@@ -1,4 +1,4 @@
-package by.htp.extratask1.dao.impl;
+package by.htp.extratask1.domain.impl;
 
 import java.util.Map;
 
@@ -9,13 +9,14 @@ import javax.xml.bind.annotation.XmlType;
 
 import by.htp.extratask1.criteria.Criteria;
 import by.htp.extratask1.criteria.SearchCriteria.NewsCriteria;
-import by.htp.extratask1.dao.CategoryDAO;
-import by.htp.extratask1.dao.EntryDAO;
-import by.htp.extratask1.dao.SubCategoryDAO;
+import by.htp.extratask1.domain.TransferDataStrucure;
+import by.htp.extratask1.domain.XMLCategory;
+import by.htp.extratask1.domain.XMLEntry;
+import by.htp.extratask1.domain.XMLSubCategory;
 
 @XmlAccessorType(XmlAccessType.NONE)
 @XmlType(propOrder = {"name", "provider", "dateOfIssue", "newsBody"}, name = "news")
-public class XMLNewsDAO extends EntryDAO{
+public class XMLNews extends XMLEntry{
 	
 	@XmlElement(name = "name")
 	private String name;
@@ -26,11 +27,8 @@ public class XMLNewsDAO extends EntryDAO{
 	@XmlElement(name = "newsBody")
 	private String newsBody;
 	
-	public XMLNewsDAO() {}
-	
+	public XMLNews() {}
 
-	
-	
 	public String getName() {
 		return name;
 	}
@@ -67,7 +65,7 @@ public class XMLNewsDAO extends EntryDAO{
 	//check entry fields for search 
 	public <E> boolean processEntry(Criteria<E> EntryForSearch) {
 		Map<String, String> dynamicCriterias = EntryForSearch.getDynamicCriterias();
-		//check new by parameters
+		//check news by parameters
 		if(!"".equals(dynamicCriterias.get("newsName")) && !this.name.equals(dynamicCriterias.get("newsName")))
 			return false;
 		if(!"".equals(dynamicCriterias.get("provider")) && !this.provider.contains(dynamicCriterias.get("provider")))
@@ -80,12 +78,12 @@ public class XMLNewsDAO extends EntryDAO{
 		return true;
 	}
 	
-	public <T> void createCriteriaForOutput(CategoryDAO category, SubCategoryDAO subCategory, Criteria<T> criteriaForInput){
-		criteriaForInput.setCategory(category.getName());
-		criteriaForInput.setSubCategory(subCategory.getName());
-		criteriaForInput.add("newsName", this.name);
-		criteriaForInput.add("provider", this.provider);
-		criteriaForInput.add("dateOfIssue", this.dateOfIssue);
-		criteriaForInput.add("newsBody", this.newsBody);
+	public <T> void createStructureForOutput(XMLCategory category, XMLSubCategory subCategory, TransferDataStrucure<T> structureForOutput){
+		structureForOutput.setCategory(category.getName());
+		structureForOutput.setSubCategory(subCategory.getName());
+		structureForOutput.add("newsName", this.name);
+		structureForOutput.add("provider", this.provider);
+		structureForOutput.add("dateOfIssue", this.dateOfIssue);
+		structureForOutput.add("newsBody", this.newsBody);
 	}
 }

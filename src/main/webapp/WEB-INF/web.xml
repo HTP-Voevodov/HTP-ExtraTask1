@@ -6,34 +6,14 @@
   <display-name>Archetype Created Web Application</display-name>
    
   <servlet>
-  	<servlet-name>NewsFromWeb</servlet-name>
-  	<display-name>NewsFromWeb</display-name>
+  	<servlet-name>EntryController</servlet-name>
+  	<display-name>EntryController</display-name>
   	<description></description>
-  	<servlet-class>by.htp.extratsk1.controller.NewsFromWeb</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>NewsFromPage</servlet-name>
-  	<display-name>NewsFromPage</display-name>
-  	<description></description>
-  	<servlet-class>by.htp.extratask1.controller.NewsFromPage</servlet-class>
-  </servlet>
-  <servlet>
-  	<servlet-name>NewsFromStore</servlet-name>
-  	<display-name>NewsFromStore</display-name>
-  	<description></description>
-  	<servlet-class>by.htp.extratask1.controller.NewsFromStore</servlet-class>
+  	<servlet-class>by.htp.extratask1.controller.EntryController</servlet-class>
   </servlet>
   <servlet-mapping>
-  	<servlet-name>NewsFromWeb</servlet-name>
-  	<url-pattern>/NewsFromWeb</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>NewsFromPage</servlet-name>
-  	<url-pattern>/NewsFromPage</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-  	<servlet-name>NewsFromStore</servlet-name>
-  	<url-pattern>/NewsFromStore</url-pattern>
+  	<servlet-name>EntryController</servlet-name>
+  	<url-pattern>/EntryController</url-pattern>
   </servlet-mapping>
   <welcome-file-list>
     <welcome-file>add.jsp</welcome-file>

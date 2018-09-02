@@ -9,8 +9,7 @@ public class DAOFactory {
 	
 	private final RepositoryDAO repDAO = new XMLRepositoryDAO();
 
-	private DAOFactory() {
-	}
+	private DAOFactory() {}
 	
 	public RepositoryDAO getRepositoryDAO() {
 		return repDAO;

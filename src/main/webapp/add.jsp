@@ -10,7 +10,8 @@
 	
 	<font color="red"><c:out value="${errorMessage}" /></font>
 	<br>
-	<form method="post" action="NewsFromPage">
+	<form method="post" action="EntryController">
+		<input type="hidden" name = "command" value="createEntry">
 		<table>
 			<tr>
 				<td>News category</td>

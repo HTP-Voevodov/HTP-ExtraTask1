@@ -2,8 +2,12 @@ package by.htp.extratask1.dao;
 
 import java.util.List;
 
-public interface RepositoryDAO {
-	public List<?> getCategories();
-	public CategoryDAO searchCategory(String categoryName);
-	public void addCategory(CategoryDAO category);
+import by.htp.extratask1.criteria.Criteria;
+import by.htp.extratask1.domain.TransferDataStrucure;
+import by.htp.extratask1.service.ServiceException;
+
+
+public interface RepositoryDAO{
+	public <E> void createEntry(Criteria<E> inputEntry) throws DAOException;
+	public <E> List<TransferDataStrucure<E>> searchEntries(Criteria<E> EntryForSearch) throws DAOException; 
 }
